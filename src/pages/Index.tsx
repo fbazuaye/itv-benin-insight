@@ -3,6 +3,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { AnswerBox } from "@/components/AnswerBox";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { OnboardingGuide } from "@/components/OnboardingGuide";
 
 const API_URL = "https://srv1174892.hstgr.cloud/api/v1/prediction/33767a00-1830-481a-b728-452e352a9007";
 
@@ -78,6 +79,9 @@ const Index = () => {
           error={error}
           onFollowUp={handleSearch}
         />
+
+        {/* Onboarding Guide */}
+        {!answer && !isLoading && <OnboardingGuide />}
       </main>
 
       {/* Footer */}
