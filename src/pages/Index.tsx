@@ -76,6 +76,7 @@ const Index = () => {
           sources={sources}
           isLoading={isLoading}
           error={error}
+          onFollowUp={handleSearch}
         />
       </main>
 

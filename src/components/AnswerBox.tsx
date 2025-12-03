@@ -1,13 +1,30 @@
-import { FileText, Loader2 } from "lucide-react";
+import { FileText, Loader2, Send } from "lucide-react";
+import { useState, KeyboardEvent } from "react";
 
 interface AnswerBoxProps {
   answer: string | null;
   sources?: string[];
   isLoading: boolean;
   error: string | null;
+  onFollowUp?: (query: string) => void;
 }
 
-export const AnswerBox = ({ answer, sources, isLoading, error }: AnswerBoxProps) => {
+export const AnswerBox = ({ answer, sources, isLoading, error, onFollowUp }: AnswerBoxProps) => {
+  const [followUpQuery, setFollowUpQuery] = useState("");
+
+  const handleFollowUp = () => {
+    if (followUpQuery.trim() && onFollowUp && !isLoading) {
+      onFollowUp(followUpQuery.trim());
+      setFollowUpQuery("");
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleFollowUp();
+    }
+  };
+
   if (!answer && !isLoading && !error) return null;
 
   return (
@@ -42,6 +59,29 @@ export const AnswerBox = ({ answer, sources, isLoading, error }: AnswerBoxProps)
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Follow-up Question Input */}
+            {onFollowUp && (
+              <div className="mt-6 pt-4 border-t border-border">
+                <div className="flex items-center gap-2 bg-background border border-border rounded-lg overflow-hidden">
+                  <input
+                    type="text"
+                    value={followUpQuery}
+                    onChange={(e) => setFollowUpQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Ask a follow-up question..."
+                    className="flex-1 py-3 px-4 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-sm"
+                  />
+                  <button
+                    onClick={handleFollowUp}
+                    disabled={!followUpQuery.trim()}
+                    className="px-4 py-3 bg-blue-600 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             )}
           </>
