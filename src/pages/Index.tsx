@@ -1,15 +1,8 @@
 import { useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
-import { SuggestionCard } from "@/components/SuggestionCard";
 import { AnswerBox } from "@/components/AnswerBox";
 import { Footer } from "@/components/Footer";
-
-const SUGGESTIONS = [
-  "Latest political news",
-  "Sports updates",
-  "Entertainment stories",
-  "ITV Benin weekend headlines",
-];
+import logo from "@/assets/logo.png";
 
 const API_URL = "https://srv1174892.hstgr.cloud/api/v1/prediction/33767a00-1830-481a-b728-452e352a9007";
 
@@ -66,30 +59,14 @@ const Index = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 md:py-20">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="font-display text-3xl md:text-5xl font-bold text-primary mb-3">
+          <img src={logo} alt="ITV Benin Logo" className="h-20 md:h-24 mx-auto mb-4" />
+          <h1 className="font-display text-3xl md:text-5xl font-bold text-blue-600 mb-3">
             ITV Benin AI Search Engine
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg">
-            Ask anything about politics, sports, entertainment, and more.
-          </p>
         </div>
 
         {/* Search Bar */}
         <SearchBar onSearch={handleSearch} isLoading={isLoading} />
-
-        {/* Suggestion Cards */}
-        <div className="w-full max-w-2xl mx-auto mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {SUGGESTIONS.map((suggestion) => (
-              <SuggestionCard
-                key={suggestion}
-                text={suggestion}
-                onClick={handleSearch}
-                disabled={isLoading}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* Answer Box */}
         <AnswerBox
