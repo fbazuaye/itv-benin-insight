@@ -32,7 +32,7 @@ export const SearchBar = ({ onSearch, isLoading }: SearchBarProps) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask anything…"
+            placeholder="Ask anything......e.g who won the edo state governorship election 2024"
             disabled={isLoading}
             className="w-full py-4 pl-14 pr-6 bg-transparent rounded-full text-foreground placeholder:text-muted-foreground focus:outline-none text-base md:text-lg disabled:opacity-50"
           />
