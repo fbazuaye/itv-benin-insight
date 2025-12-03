@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { AnswerBox } from "@/components/AnswerBox";
 import { Footer } from "@/components/Footer";
-import logo from "@/assets/logo.png";
+import { Header } from "@/components/Header";
 
 const API_URL = "https://srv1174892.hstgr.cloud/api/v1/prediction/33767a00-1830-481a-b728-452e352a9007";
 
@@ -55,11 +55,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Header with Logo */}
+      <Header />
+
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 md:py-20">
-        {/* Header */}
+        {/* Title */}
         <div className="text-center mb-10">
-          <img src={logo} alt="ITV Benin Logo" className="h-20 md:h-24 mx-auto mb-4" />
           <h1 className="font-display text-3xl md:text-5xl font-bold text-blue-600 mb-3">
             ITV Benin AI Search Engine
           </h1>
